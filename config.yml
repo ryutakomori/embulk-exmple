@@ -1,0 +1,24 @@
+in:
+  type: file
+  path_prefix: input_data.csv
+  parser:
+    type: csv
+    columns:
+      - {name: id, type: long}
+      - {name: name, type: string}
+      - {name: email, type: string}
+    skip_header_lines: 1
+    
+out:
+  type: mysql
+  host: localhost
+  user: root
+  password: passw0rd
+  database: sample
+  table: mytable
+  mode: insert # ファイルを上書きする場合
+
+exec:
+  max_threads: 2
+  min_output_tasks: 1
+  resume_task_seq: true
